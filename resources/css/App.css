@@ -2,6 +2,9 @@
 .App {
   background-color: white;
 }
+.full-width {
+    width: 100%;
+}
 
 .Auth-form-container {
   display: flex;
