@@ -5,7 +5,7 @@ body,
     width: 100%;
     margin: 0;
     padding: 0;
-    background: #72adff;
+    background: #242322;
     min-height: 100vh;
     font-family: 'Encode Sans', sans-serif;
 }
@@ -60,15 +60,6 @@ body,
     position: absolute;
     bottom: 0px;
     width: 100%;
-}
-.contentSettings {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 100vh;
-    width: 100%;
-    margin: 0;
-    padding: 0;
 }
 .navbar .dropdown-menu {
     z-index: 9999;

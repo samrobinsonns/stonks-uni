@@ -3,6 +3,7 @@ import Navigation from "./navigation";
 import Footer from "./footer"
 import "./../../css/App.css";
 import '../../css/bootstrap.min.css';
+import '../../css/navbar.css';
 
 export default function Auth(props) {
     return (

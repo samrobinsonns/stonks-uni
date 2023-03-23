@@ -20,6 +20,8 @@ import {
 import Home from './home';
 import Stocks from './stocks';
 import Profile from './profile';
+import Pricing from "./pricing";
+import Settings from "./settings";
 
 function Navigation() {
     const [showNav, setShowNav] = useState(false);
@@ -55,8 +57,8 @@ function Navigation() {
                 return <Profile />
             case 'settings':
                 return <Settings />
-            case 'settings':
-                return <Settings />
+            case 'pricing':
+                return <Pricing />
                 return null; // No content for the settings page yet
             default:
                 return null;
@@ -67,7 +69,7 @@ function Navigation() {
         <div>
             <MDBNavbar expand='lg' light bgColor='light'>
                 <MDBContainer fluid>
-                    <MDBNavbarBrand href='#'>STONKS</MDBNavbarBrand>
+                    <MDBNavbarBrand href='#'><b>STONKS</b></MDBNavbarBrand>
                     <MDBNavbarToggler
                         type='button'
                         aria-expanded='false'
@@ -113,7 +115,7 @@ function Navigation() {
                     </MDBCollapse>
                 </MDBContainer>
             </MDBNavbar>
-            <MDBContainer className='my-5'>{getContent()}</MDBContainer>
+            <MDBContainer className='my-3' fluid>{getContent()}</MDBContainer>
         </div>
     );
 }
