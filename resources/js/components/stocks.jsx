@@ -16,7 +16,7 @@ export default function Stocks() {
                     <MDBCardTitle>Stocks Info</MDBCardTitle>
                     <hr></hr>
                     <MDBCardText>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        Welcome to the Stocks Page, this is where you can search, view, manage and track your investment porfolio.
                     </MDBCardText>
                 </MDBCardBody>
             </MDBCard>

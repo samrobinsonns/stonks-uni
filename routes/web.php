@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StocksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::post('/profile', [App\Http\Controllers\UserController::class, 'update'])
     ->middleware('auth')
     ->name('profile.update');
 
+Route::get('/get_stock_price/{symbol}', [StocksController::class, 'getStockPrice']);
 
 
 
