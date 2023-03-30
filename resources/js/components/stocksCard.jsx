@@ -10,12 +10,12 @@ import {
 
 export default function StocksCard() {
   return (
-    <MDBCard>
+    <MDBCard style={{ maxWidth: '30%', marginTop: '1rem' }}>
       <MDBCardImage src='https://mdbootstrap.com/img/new/standard/nature/184.webp' position='top' alt='...' />
       <MDBCardBody>
         <MDBCardTitle>Card title</MDBCardTitle>
         <MDBCardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            This is an example card for the Stocks API.
         </MDBCardText>
         <MDBBtn href='#'>Button</MDBBtn>
       </MDBCardBody>

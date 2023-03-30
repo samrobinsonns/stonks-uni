@@ -6,6 +6,7 @@ import {
     MDBCard,
     MDBCardText, MDBContainer
 } from 'mdb-react-ui-kit';
+import StocksCard from "./stocksCard";
 
 export default function Stocks() {
     return (
@@ -19,6 +20,8 @@ export default function Stocks() {
                     </MDBCardText>
                 </MDBCardBody>
             </MDBCard>
+            <StocksCard>
+            </StocksCard>
         </MDBContainer>
     );
 }
