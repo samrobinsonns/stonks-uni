@@ -1,22 +1,26 @@
 <?php
-header('Content-Type: application/json');
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
+namespace App\Http\Controllers;
 
-$api_key = 'cghh88hr01qjd0395atgcghh88hr01qjd0395au0';
+use Illuminate\Http\Request;
 
-if (isset($_GET['symbol'])) {
-    $symbol = $_GET['symbol'];
-    $finnhub_url = "https://finnhub.io/api/v1/quote?symbol={$symbol}&token={$api_key}";
+class StocksController extends Controller
+{
+    private $finnhub_api_key = 'cghh88hr01qjd0395atgcghh88hr01qjd0395au0';
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $finnhub_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $result = curl_exec($ch);
-    curl_close($ch);
+    public function getStockPrice(Request $request, $symbol)
+    {$finnhub_url = "https://finnhub.io/api/v1/quote?symbol=%7B$symbol%7D&token=%7B$this-%3Efinnhub_api_key%7D";
 
-    echo $result;
-} else {
-    echo json_encode(['error' => 'No symbol provided']);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $finnhub_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return response()->json($result);
+    }
 }

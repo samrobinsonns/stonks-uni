@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 import {
     MDBCard,
@@ -13,27 +12,20 @@ import {
 
 export default function StocksCard() {
     const [search, setSearch] = useState('');
-    const [stockInfo, setStockInfo] = useState({ price: null, error: null });
+    const [stockInfo, setStockInfo] = useState({price: null, error: null});
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get(
-                `http://localhost/get_stock_price.php?symbol=${search}`
-            );
-            if (response.data.error) {
-                setStockInfo({ price: null, error: `Error: ${response.data.error}` });
-            } else if (response.data.c) {
-                setStockInfo({ price: response.data.c, error: null });
-            } else {
-                setStockInfo({ price: null, error: 'Error retrieving stock price' });
-            }
+            const response = await fetch(`app/Http/Controllers/Auth/get_stock_price.php?symbol=${search}`)
+            const data = await response.json();
+            setStockInfo({price: data.price, error: null});
         } catch (error) {
-            setStockInfo({ price: null, error: `Error: ${error.message}` });
+            setStockInfo({price: null, error: 'Error retrieving stock price'});
         }
     };
 
     return (
-        <MDBCard style={{ maxWidth: '30%', marginTop: '1rem' }}>
+        <MDBCard style={{maxWidth: '30%', marginTop: '1rem'}}>
             <MDBCardImage
                 src='https://mdbootstrap.com/img/new/standard/nature/184.webp'
                 position='top'
@@ -62,4 +54,3 @@ export default function StocksCard() {
         </MDBCard>
     );
 }
-
