@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StocksController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AvatarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,21 +27,14 @@ Route::get('/{catch?}', function () {
     return view('home'); // your start view
 })->where('catch', '^(?!api).*$');
 
-Route::post('/avatar', 'App\Http\Controllers\AvatarController@updateAvatar');
+Route::post('/avatar', [AvatarController::class, 'updateAvatar']);
 
-use App\Http\Controllers\UserController;
-
-Route::get('/api/user', [App\Http\Controllers\UserController::class, 'getUserData']);
-
-Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])
+Route::get('/profile', [UserController::class, 'profile'])
     ->middleware('auth')
     ->name('profile');
 
-Route::post('/profile', [App\Http\Controllers\UserController::class, 'update'])
+Route::post('/profile', [UserController::class, 'update'])
     ->middleware('auth')
     ->name('profile.update');
 
-Route::get('/get_stock_price/{symbol}', [StocksController::class, 'getStockPrice']);
-
-
-
+Route::get('/stocks/{symbol}', [StocksController::class, 'getStockPrice']);
