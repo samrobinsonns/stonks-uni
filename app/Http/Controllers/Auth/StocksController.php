@@ -17,6 +17,10 @@ class StocksController extends Controller
 
     public function getStockPrice(Request $request, $symbol)
     {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
         $finnhub_url = "https://finnhub.io/api/v1/quote?symbol={$symbol}&token={$this->finnhub_api_key}";
         $response = Http::get($finnhub_url);
 
