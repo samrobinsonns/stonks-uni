@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StocksController;
+use App\Http\Controllers\Auth\StocksController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AvatarController;
 
@@ -23,10 +23,6 @@ Route::get('/logout', function () {
     return redirect()->route('login'); // Redirect to the login page
 })->name('logout');
 
-Route::get('/{catch?}', function () {
-    return view('home'); // your start view
-})->where('catch', '^(?!api).*$');
-
 Route::post('/avatar', [AvatarController::class, 'updateAvatar']);
 
 Route::get('/profile', [UserController::class, 'profile'])
@@ -38,3 +34,7 @@ Route::post('/profile', [UserController::class, 'update'])
     ->name('profile.update');
 
 Route::get('/stocks/{symbol}', [StocksController::class, 'getStockPrice']);
+
+Route::get('/{catch?}', function () {
+    return view('home'); // your start view
+})->where('catch', '^(?!api).*$');

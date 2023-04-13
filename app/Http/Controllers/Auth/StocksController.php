@@ -1,18 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\Controller;
 
 class StocksController extends Controller
 {
-    private $finnhub_api_key = 'cgishbpr01qoenkm07s0cgishbpr01qoenkm07sg';
+    private string $finnhub_api_key;
+
+    public function __construct()
+    {
+        $this->finnhub_api_key = config("services.finnhub.key");
+    }
 
     public function getStockPrice(Request $request, $symbol)
     {
         $finnhub_url = "https://finnhub.io/api/v1/quote?symbol={$symbol}&token={$this->finnhub_api_key}";
-        dd($symbol);
         $response = Http::get($finnhub_url);
 
         if ($response->status() == 200) {

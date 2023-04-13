@@ -28,7 +28,7 @@ function Navigation() {
     const [activeTab, setActiveTab] = useState('home');
     const [username, setUserName] = useState('');
 
-    useEffect(() => {
+    /*useEffect(() => {
         // Fetch user data from backend and set the username state
         fetch('/api/user')
             .then((response) => response.json())
@@ -38,7 +38,7 @@ function Navigation() {
             .catch((error) => {
                 console.error('Error fetching user data:', error);
             });
-    }, []);
+    }, []);*/
 
     const handleLogout = () => {
         // Perform logout action

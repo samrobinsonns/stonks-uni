@@ -17,7 +17,6 @@ export default function StocksCard() {
     const handleSearch = async () => {
         try {
             const response = await fetch(`http://localhost:8000/stocks/${search}`);
-            console.log('Data from server:', data);
             const data = await response.json();
             console.log(search);
             setStockInfo({price: data.price, error: null});
