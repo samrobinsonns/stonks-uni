@@ -17,9 +17,12 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "chart.js": "^4.2.1",
         "jsx": "^0.9.89",
         "mdb-react-ui-kit": "^5.1.0",
         "react-bootstrap": "^2.7.2",
-        "react-router-dom": "^6.8.2"
+        "react-chartjs-2": "^5.2.0",
+        "react-router-dom": "^6.8.2",
+        "recharts": "^2.5.0"
     }
 }

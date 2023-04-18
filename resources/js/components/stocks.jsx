@@ -8,6 +8,7 @@ import {
 } from 'mdb-react-ui-kit';
 import StocksCard from "./stocksCard";
 
+
 export default function Stocks() {
     return (
         <MDBContainer fluid>
@@ -20,8 +21,7 @@ export default function Stocks() {
                     </MDBCardText>
                 </MDBCardBody>
             </MDBCard>
-            <StocksCard>
-            </StocksCard>
+            <StocksCard />
         </MDBContainer>
     );
 }
