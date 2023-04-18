@@ -21,4 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/user/{id}', 'UserController@show');
 Route::put('/user/{id}', 'UserController@update');
 
+Route::middleware('auth:api')->group(function () {
+    Route::post('/change-password', 'AccountController@changePassword');
+    Route::post('/change-email', 'AccountController@changeEmail');
+});
 
