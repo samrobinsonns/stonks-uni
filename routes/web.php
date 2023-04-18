@@ -38,3 +38,5 @@ Route::get('/stocks/{symbol}', [StocksController::class, 'getStockPrice']);
 Route::get('/{catch?}', function () {
     return view('home'); // your start view
 })->where('catch', '^(?!api).*$');
+
+
