@@ -49,10 +49,3 @@ label {
     left: auto;
 }
 
-.stocks-container {
-    display: flex;
-    justify-content: space-around; /* or space-between or center, depending on your preference */
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    /* Add any other styling properties as needed */
-}
