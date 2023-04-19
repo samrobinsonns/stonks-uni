@@ -1,0 +1,21 @@
+.stocks-container {
+    margin-top: 1rem;
+}
+
+.search-card,
+.pinned-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.search-card:hover,
+.pinned-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+}
+
+.search-card .mdb-input {
+    margin-bottom: 1rem;
+}
