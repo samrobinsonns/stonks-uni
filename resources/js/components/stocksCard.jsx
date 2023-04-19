@@ -11,7 +11,6 @@ import {
     MDBIcon
 } from 'mdb-react-ui-kit';
 
-
 export default function StocksCard() {
     const [search, setSearch] = useState('');
     const [stockInfo, setStockInfo] = useState({ price: null, error: null });
