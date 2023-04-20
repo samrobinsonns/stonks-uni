@@ -19,9 +19,10 @@ export default function Stocks() {
                     <MDBCardText>
                         Welcome to the Stocks Page, this is where you can search, view, manage and track your investment porfolio.
                     </MDBCardText>
+                    <StocksCard />
                 </MDBCardBody>
             </MDBCard>
-            <StocksCard />
+
         </MDBContainer>
     );
 }

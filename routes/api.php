@@ -26,3 +26,4 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/change-email', 'AccountController@changeEmail');
 });
 
+

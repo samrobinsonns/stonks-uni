@@ -56,12 +56,7 @@ export default function StocksCard() {
         <MDBContainer fluid className='stocks-container'>
             <MDBRow>
                 <MDBCol md='6' lg='4' className='mb-4'>
-                    <MDBCard className='search-card h-100'>
-                        <MDBCardImage
-                            src='https://mdbootstrap.com/img/new/standard/nature/184.webp'
-                            position='top'
-                            alt='...'
-                        />
+                    <MDBCard className='search-card h-100' border='primary'>
                         <MDBCardBody className='d-flex flex-column justify-content-between'>
                             <div>
                                 <MDBCardTitle>Stock Price Search</MDBCardTitle>
@@ -72,28 +67,17 @@ export default function StocksCard() {
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
                                 <MDBBtn onClick={handleSearch}>Search</MDBBtn>
+                                <MDBBtn onClick={handlePin} className='mx-2' tag='a' color='success' outline floating>
+                                    PIN
+                                </MDBBtn>
                             </div>
-                            {stockInfo.price && (
-                                <>
-                                    <MDBCardText>
-                                        The current price of {search.toUpperCase()} stock is: ${stockInfo.price}
-                                    </MDBCardText>
-                                    <MDBBtn onClick={handlePin}>
-                                        <MDBIcon fas icon='thumbtack' /> Pin Stock
-                                    </MDBBtn>
-                                </>
-                            )}
-                            {stockInfo.error && (
-                                <MDBCardText className='text-danger'>
-                                    {stockInfo.error}
-                                </MDBCardText>
-                            )}
+
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
                 {pinnedStocks.map((stock, index) => (
                     <MDBCol key={index} md='6' lg='4' className='mb-4'>
-                        <MDBCard className='pinned-card h-100'>
+                        <MDBCard className='pinned-card h-100' border='secondary'>
                             <MDBCardBody className='d-flex flex-column justify-content-between'>
                                 <div className='mb-auto'>
                                     <MDBCardTitle>{stock.symbol}</MDBCardTitle>
