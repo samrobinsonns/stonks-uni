@@ -21,7 +21,7 @@ export default function Profile() {
 
     const handlePasswordChange = (event) => {
         event.preventDefault();
-        axios.post('/api/change-password', {
+        axios.post('/change-password', {
             current_password: currentPassword,
             new_password: newPassword,
             new_password_confirmation: newPasswordConfirmation
@@ -45,7 +45,7 @@ export default function Profile() {
 
     const handleEmailChange = (event) => {
         event.preventDefault();
-        axios.post('/api/change-email', {
+        axios.post('/change-email', {
             email: email
         })
             .then((response) => {
@@ -63,6 +63,34 @@ export default function Profile() {
             });
     };
 
+        const [avatar, setAvatar] = useState(null);
+
+        const handleAvatarChange = (event) => {
+            setAvatar(event.target.files[0]);
+        };
+
+        const handleAvatarUpload = () => {
+            const formData = new FormData();
+            formData.append('avatar', avatar);
+
+            axios.post('/avatar/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                })
+                .then((response) => {
+                    setSuccessMessage('Avatar uploaded successfully.');
+                    setErrorMessage('');
+                })
+                .catch((error) => {
+                    setSuccessMessage('');
+                    if (error.response && error.response.data) {
+                        setErrorMessage(error.response.data.message);
+                    } else {
+                        setErrorMessage('An error occurred while trying to upload the avatar. Please try again later.');
+                    }
+                });
+        };
     return (
         <MDBContainer fluid>
             <MDBCard>
@@ -92,6 +120,23 @@ export default function Profile() {
                         <MDBInput type="email" label="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         <MDBBtn type="submit" color="primary">Change email</MDBBtn>
                     </form>
+                    <hr />
+                    <div className='mb-3'>
+                        <label htmlFor='avatarInput' className='form-label'>
+                            Avatar
+                        </label>
+                        <input
+                            type='file'
+                            className='form-control'
+                            id='avatarInput'
+                            name='avatar'
+                            accept='image/*'
+                            onChange={handleAvatarChange}
+                        />
+                    </div>
+                    <MDBBtn color='primary' onClick={handleAvatarUpload}>
+                        Save Changes
+                    </MDBBtn>
                 </MDBCardBody>
             </MDBCard>
         </MDBContainer>
