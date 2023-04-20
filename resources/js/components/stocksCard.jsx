@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import {
     MDBCard,
@@ -16,11 +17,11 @@ import {
 
 import './../../css/StocksCard.css';
 
-
 export default function StocksCard() {
     const [search, setSearch] = useState('');
     const [stockInfo, setStockInfo] = useState({ price: null, error: null });
     const [pinnedStocks, setPinnedStocks] = useState([]);
+    const [suggestions, setSuggestions] = useState([]);
 
     useEffect(() => {
         const cachedStocks = localStorage.getItem('pinnedStocks');
@@ -32,6 +33,24 @@ export default function StocksCard() {
     useEffect(() => {
         localStorage.setItem('pinnedStocks', JSON.stringify(pinnedStocks));
     }, [pinnedStocks]);
+
+    const fetchSuggestions = async (query) => {
+        try {
+            const response = await axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=6CVJHCC8JT92MUN1`);
+            setSuggestions(response.data.bestMatches);
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
+        }
+    };
+
+    const handleSearchInput = (e) => {
+        setSearch(e.target.value);
+        if (e.target.value.length >= 2) {
+            fetchSuggestions(e.target.value);
+        } else {
+            setSuggestions([]);
+        }
+    };
 
     const handleSearch = async () => {
         try {
@@ -64,14 +83,40 @@ export default function StocksCard() {
                                     label='Enter stock symbol'
                                     type='text'
                                     value={search}
-                                    onChange={(e) => setSearch(e.target.value)}
+                                    onChange={handleSearchInput}
+                                    autoComplete='off'
                                 />
+                                {suggestions.length > 0 && (
+                                    <ul className='suggestions-list'>
+                                        {suggestions.map((suggestion) => (
+                                            <li
+                                                key={suggestion['1. symbol']}
+                                                onClick={() => {
+                                                    setSearch(suggestion['1. symbol']);
+                                                    setSuggestions([]);
+                                                }}
+                                            >
+                                                {suggestion['1. symbol']} - {suggestion['2. name']}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
                                 <MDBBtn onClick={handleSearch}>Search</MDBBtn>
-                                <MDBBtn onClick={handlePin} className='mx-2' tag='a' color='success' outline floating>
-                                    PIN
-                                </MDBBtn>
+                                <MDBBtn onClick={handlePin} className='mx-2' color='secondary'>PIN</MDBBtn>
                             </div>
+                            {stockInfo.price && (
+                                <>
+                                    <MDBCardText>
+                                        The current price of {search.toUpperCase()} stock is: ${stockInfo.price}
+                                    </MDBCardText>
 
+                                </>
+                            )}
+                            {stockInfo.error && (
+                                <MDBCardText className='text-danger'>
+                                    {stockInfo.error}
+                                </MDBCardText>
+                            )}
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
