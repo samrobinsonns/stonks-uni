@@ -27,6 +27,7 @@
     <script>
         window.user = {
             name: '{{auth()->user()->name ?? ''}}',
+            avatar: '{{auth()->user()->avatar_path ?? null}}',
         }
     </script>
 

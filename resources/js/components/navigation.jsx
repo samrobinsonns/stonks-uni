@@ -84,7 +84,7 @@ function Navigation() {
         }
     };
 
-    const avatarSrc = avatar.avatar_path ? `/storage/${avatar.avatar_path}` : defaultAvatar;
+    const avatarSrc = window.user.avatar ? `/uploads/${window.user.avatar}` : defaultAvatar;
 
     return (
         <div>
@@ -120,7 +120,7 @@ function Navigation() {
                         <MDBNavbarLink className='ms-2'>{`Welcome ` + window.user.name.split(' ')[0]}</MDBNavbarLink>
                         <MDBDropdown>
                             <MDBDropdownToggle tag='span' caret>
-                                <img src={avatarSrc} alt="Avatar" width="30" height="30" className="rounded-circle" />
+                                <img src={avatarSrc} alt="Avatar" width="45" height="45" className="rounded-circle" />
                             </MDBDropdownToggle>
                             <MDBDropdownMenu className='dropdown-menu'>
                                 <MDBDropdownItem className="dropdown-item logout" active={activeTab === 'profile'} onClick={() => setActiveTab('profile')}>Profile</MDBDropdownItem>

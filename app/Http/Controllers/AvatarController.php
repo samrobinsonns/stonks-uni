@@ -13,27 +13,26 @@ class AvatarController extends Controller
         $user = $request->user();
 
         if ($request->hasFile('avatar')) {
-            // Delete the old avatar if it exists
-            if ($user->avatar && Storage::exists($user->avatar)) {
-                Storage::delete($user->avatar);
-            }
+            $file = $request->file('avatar');
+            $filename = time().$file->getClientOriginalName();
 
-            // Store the new avatar and update the user record
-            $path = $request->file('avatar')->store('avatars');
+            // Save the file to storage/app/public/avatars directory
+            Storage::disk('public_uploads')->put($filename, file_get_contents($file));
 
-            // Store the file path in the database
-            $user->avatar_path = $path;
+            // Update the user's avatar field in the database
+            $user->avatar_path = $filename;
             $user->save();
 
             return response()->json([
                 'success' => true,
-                'avatar' => $user->avatar_path,
+                'message' => 'Avatar uploaded successfully',
+                'filename' => $filename,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'No avatar file received',
             ]);
         }
-
-        return response()->json([
-            'success' => false,
-            'message' => 'No avatar uploaded.',
-        ]);
     }
 }

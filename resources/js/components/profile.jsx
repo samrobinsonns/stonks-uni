@@ -81,6 +81,8 @@ export default function Profile() {
                 .then((response) => {
                     setSuccessMessage('Avatar uploaded successfully.');
                     setErrorMessage('');
+                    // Reload page to inject window.user object.
+                    window.location.reload();
                 })
                 .catch((error) => {
                     setSuccessMessage('');

@@ -74,7 +74,7 @@ export default function StocksCard() {
     return (
         <MDBContainer fluid className='stocks-container'>
             <MDBRow>
-                <MDBCol md='6' lg='4' className='mb-4'>
+                <MDBCol md='4' lg='4' className='mb-4' >
                     <MDBCard className='search-card h-100' border='primary'>
                         <MDBCardBody className='d-flex flex-column justify-content-between'>
                             <div>
@@ -121,8 +121,8 @@ export default function StocksCard() {
                     </MDBCard>
                 </MDBCol>
                 {pinnedStocks.map((stock, index) => (
-                    <MDBCol key={index} md='6' lg='4' className='mb-4'>
-                        <MDBCard className='pinned-card h-100' border='secondary'>
+                    <MDBCol key={index} size="4" md="3" lg="2" className='my-0'>
+                        <MDBCard className='pinned-card' border='secondary'>
                             <MDBCardBody className='d-flex flex-column justify-content-between'>
                                 <div className='mb-auto'>
                                     <MDBCardTitle>{stock.symbol}</MDBCardTitle>

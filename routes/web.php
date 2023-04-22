@@ -19,6 +19,10 @@ use App\Http\Controllers\AvatarController;
 
 Auth::routes();
 
+Route::get('/test', function () {
+    dd(\Illuminate\Support\Facades\Storage::url('avatars/RZU3GgSitWYDB0G292IXh4SPKqBVEXF5546jilxA.jpg'));
+});
+
 Route::get('/logout', function () {
     Auth::logout(); // Logout the user
     return redirect()->route('login'); // Redirect to the login page
@@ -42,32 +46,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::post('/avatar/upload', [AvatarController::class, 'uploadAvatar'])->middleware('auth:sanctum');
-Route::post('/avatar', function (Request $request) {
-    $user = $request->user();
 
-    if ($request->hasFile('avatar')) {
-        $file = $request->file('avatar');
-        $filename = $file->getClientOriginalName();
-
-        // Save the file to storage/app/public/avatars directory
-        $path = $file->storeAs('public/avatars', $filename);
-
-        // Update the user's avatar field in the database
-        $user->avatar = $filename;
-        $user->save();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Avatar uploaded successfully',
-            'filename' => $filename,
-        ]);
-    } else {
-        return response()->json([
-            'success' => false,
-            'message' => 'No avatar file received',
-        ]);
-    }
-})->middleware(['auth']);
 
 Route::get('/{catch?}', function () {
     return view('home'); // your start view
