@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../css/navbar.css';
 import '../../css/bootstrap.min.css';
+import defaultAvatar from './../../images/default-avatar.png';
 
 import {
     MDBContainer,
@@ -27,18 +28,36 @@ function Navigation() {
     const [showNav, setShowNav] = useState(false);
     const [activeTab, setActiveTab] = useState('home');
     const [username, setUserName] = useState('');
+    const [avatar, setAvatar] = useState('');
 
-    /*useEffect(() => {
-        // Fetch user data from backend and set the username state
-        fetch('/api/user')
+    useEffect(() => {
+        // Fetch user data from backend and set the username and avatar state
+        fetch('/avatar/upload')
             .then((response) => response.json())
             .then((data) => {
-                setUserName(data.name);
+                setAvatar(data.avatar);
             })
             .catch((error) => {
                 console.error('Error fetching user data:', error);
             });
-    }, []);*/
+    }, []);
+
+    const handleFileUpload = (event) => {
+        const formData = new FormData();
+        formData.append('avatar', event.target.files[0]);
+
+        fetch('/avatar/upload', {
+            method: 'POST',
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setAvatar(data.avatar);
+            })
+            .catch((error) => {
+                console.error('Error uploading avatar:', error);
+            });
+    };
 
     const handleLogout = () => {
         // Perform logout action
@@ -64,6 +83,8 @@ function Navigation() {
                 return null;
         }
     };
+
+    const avatarSrc = window.user.avatar ? `/uploads/${window.user.avatar}` : defaultAvatar;
 
     return (
         <div>
@@ -99,15 +120,10 @@ function Navigation() {
                         <MDBNavbarLink className='ms-2'>{`Welcome ` + window.user.name.split(' ')[0]}</MDBNavbarLink>
                         <MDBDropdown>
                             <MDBDropdownToggle tag='span' caret>
-                                <img
-                                    className="rounded-circle avatar"
-                                    src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg"
-                                    alt="avatar"
-                                />
+                                <img src={avatarSrc} alt="Avatar" width="45" height="45" className="rounded-circle" />
                             </MDBDropdownToggle>
                             <MDBDropdownMenu className='dropdown-menu'>
                                 <MDBDropdownItem className="dropdown-item logout" active={activeTab === 'profile'} onClick={() => setActiveTab('profile')}>Profile</MDBDropdownItem>
-                                <MDBDropdownItem className="dropdown-item logout" active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>Settings</MDBDropdownItem>
                                 <MDBDropdownItem className="dropdown-item logout" active={activeTab === 'logout'} onClick={() => window.location.href='/logout'}>Logout</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>

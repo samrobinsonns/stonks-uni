@@ -1,6 +1,7 @@
 import React from 'react';
 import './../../css/navbar.css';
 import './../../css/pricing.css';
+
 import {
     MDBCardBody,
     MDBCardTitle,
@@ -17,17 +18,17 @@ export default function Pricing() {
         {
             title: 'Basic',
             price: '9.99',
-            features: ['Feature 1', 'Feature 2', 'Feature 3']
+            features: ['Pin up to 5 stock prices', 'Real-time stock data', 'Price alerts']
         },
         {
             title: 'Pro',
             price: '19.99',
-            features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5']
+            features: ['Pin up to 10 stock prices', 'Real-time stock data', 'Price alerts', 'Advanced stock analysis', 'Customizable watchlists']
         },
         {
             title: 'Enterprise',
             price: '49.99',
-            features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5', 'Feature 6']
+            features: ['Pin unlimited stock prices', 'Real-time stock data', 'Price alerts', 'Advanced stock analysis', 'Customizable watchlists', 'Portfolio tracking']
         }
     ];
 

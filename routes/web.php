@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\StocksController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AvatarController;
 
 /*
@@ -17,6 +18,10 @@ use App\Http\Controllers\AvatarController;
 */
 
 Auth::routes();
+
+Route::get('/test', function () {
+    dd(\Illuminate\Support\Facades\Storage::url('avatars/RZU3GgSitWYDB0G292IXh4SPKqBVEXF5546jilxA.jpg'));
+});
 
 Route::get('/logout', function () {
     Auth::logout(); // Logout the user
@@ -34,6 +39,14 @@ Route::post('/profile', [UserController::class, 'update'])
     ->name('profile.update');
 
 Route::get('/stocks/{symbol}', [StocksController::class, 'getStockPrice']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/change-password', [AccountController::class, 'changePassword']);
+    Route::post('/change-email', [AccountController::class, 'changeEmail']);
+});
+
+Route::post('/avatar/upload', [AvatarController::class, 'uploadAvatar'])->middleware('auth:sanctum');
+
 
 Route::get('/{catch?}', function () {
     return view('home'); // your start view

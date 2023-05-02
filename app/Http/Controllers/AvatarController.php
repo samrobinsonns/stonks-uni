@@ -3,28 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class AvatarController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function uploadAvatar(Request $request)
     {
-        $request->validate([
-            'avatar' => 'required|image|max:2048', // validate the uploaded file as an image with a max size of 2MB
-        ]);
+        $user = $request->user();
 
-        $user = auth()->user(); // get the authenticated user
-        $avatarName = $user->id . '_avatar.' . $request->file('avatar')->getClientOriginalExtension(); // generate a unique name for the avatar
-        $request->file('avatar')->storeAs('avatars', $avatarName, 'public'); // store the avatar in the public disk under the 'avatars' directory
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $filename = time().$file->getClientOriginalName();
 
-        $user->avatar = $avatarName; // update the user's avatar field with the new name
-        $user->save();
+            // Save the file to storage/app/public/avatars directory
+            Storage::disk('public_uploads')->put($filename, file_get_contents($file));
 
-        return response()->json(['message' => 'Avatar updated successfully.']);
+            // Update the user's avatar field in the database
+            $user->avatar_path = $filename;
+            $user->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Avatar uploaded successfully',
+                'filename' => $filename,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'No avatar file received',
+            ]);
+        }
     }
 }
