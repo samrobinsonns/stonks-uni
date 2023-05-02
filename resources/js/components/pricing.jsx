@@ -42,7 +42,7 @@ export default function Pricing() {
                         <MDBRow>
                             {pricingPlans.map((plan, index) => (
                                 <MDBCol key={index} className="text-center pricing-plan">
-                                    <div className="plan-card">
+                                    <div className="plan-card" >
                                         <h4 className="plan-title">{plan.title}</h4>
                                         <h2 className="plan-price">
                                             ${plan.price}
