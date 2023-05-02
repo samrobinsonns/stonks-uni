@@ -124,7 +124,6 @@ function Navigation() {
                             </MDBDropdownToggle>
                             <MDBDropdownMenu className='dropdown-menu'>
                                 <MDBDropdownItem className="dropdown-item logout" active={activeTab === 'profile'} onClick={() => setActiveTab('profile')}>Profile</MDBDropdownItem>
-                                <MDBDropdownItem className="dropdown-item logout" active={activeTab === 'settings'} onClick={() => setActiveTab('settings')}>Settings</MDBDropdownItem>
                                 <MDBDropdownItem className="dropdown-item logout" active={activeTab === 'logout'} onClick={() => window.location.href='/logout'}>Logout</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>

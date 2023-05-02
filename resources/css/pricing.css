@@ -3,6 +3,7 @@
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 .pricing-plan {
@@ -16,6 +17,10 @@
     background-color: #f8f9fa;
     height: 400px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .plan-title {
@@ -48,8 +53,11 @@
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.2s;
+    margin-top: auto;
+    width: 100%;
     position: absolute;
     bottom: 1rem;
+
 }
 
 .plan-button:hover {
@@ -62,4 +70,59 @@
 
 .payment-icon:hover {
     color: #007bff;
+}
+
+.pricing-card hr {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.payment-icon {
+    margin: 0 0.5rem;
+    font-size: 2rem;
+}
+
+@media (max-width: 767.98px) {
+    .pricing-card {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .plan-card {
+        height: auto;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .plan-title {
+        font-size: 1rem;
+    }
+
+    .plan-price {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .plan-features li {
+        margin-bottom: 0.25rem;
+    }
+
+    .plan-button {
+        font-size: 0.9rem;
+    }
+
+    .payment-icons {
+        margin-top: 1rem;
+    }
+
+    .payment-icon {
+        font-size: 1.5rem;
+    }
 }

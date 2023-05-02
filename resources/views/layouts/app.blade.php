@@ -24,6 +24,7 @@
         @vite(['resources/css/bootstrap.min.css'])
         @vite(['resources/css/navbar.css'])
     @endauth
+
     <script>
         window.user = {
             name: '{{auth()->user()->name ?? ''}}',
