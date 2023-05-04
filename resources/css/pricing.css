@@ -61,12 +61,57 @@
     background-color: #0056b3;
 }
 
-.payment-icon {
-    transition: color 0.2s;
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2rem;
 }
 
-.payment-icon:hover {
-    color: #007bff;
+.card-number-input,
+.cvv-expiry {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.card-number-input input,
+.cvv-expiry input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.cvv-expiry {
+    display: flex;
+    align-items: center;
+}
+
+.cvv-expiry input {
+    margin-right: 0.5rem;
+    width: 120px;
+}
+
+.expiry-separator {
+    margin: 0 0.5rem;
+}
+
+.process-payment-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.process-payment-button:hover {
+    background-color: #0056b3;
 }
 
 .pricing-card hr {
@@ -113,6 +158,19 @@
 
     .plan-button {
         font-size: 0.9rem;
+    }
+
+    .payment-options {
+        margin-top: 1rem;
+    }
+
+    .card-number-input input,
+    .cvv-expiry input {
+        padding: 0.75rem;
+    }
+
+    .expiry-separator {
+        margin: 0 0.25rem;
     }
 
     .payment-icons {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './../../css/navbar.css';
 import './../../css/pricing.css';
 
@@ -32,12 +32,33 @@ export default function Pricing() {
         }
     ];
 
+    const [cardNumber, setCardNumber] = useState('');
+    const [expiryDate, setExpiryDate] = useState('');
+    const [cvv, setCVV] = useState('');
+
+    const handleCardNumberChange = (e) => {
+        setCardNumber(e.target.value);
+    };
+
+    const handleExpiryDateChange = (e) => {
+        setExpiryDate(e.target.value);
+    };
+
+    const handleCVVChange = (e) => {
+        setCVV(e.target.value);
+    };
+
+    const handlePaymentProcess = () => {
+        // Implement payment processing logic here
+        // You can use the cardNumber, expiryDate, and cvv variables to process the payment
+    };
+
     return (
         <MDBContainer fluid>
             <MDBCard className="pricing-card">
                 <MDBCardBody>
                     <MDBCardTitle>Pricing</MDBCardTitle>
-                    <hr></hr>
+                    <hr />
                     <MDBCardText>
                         <MDBRow>
                             {pricingPlans.map((plan, index) => (
@@ -82,8 +103,37 @@ export default function Pricing() {
                             </ol>
                             <p>By using STONKS services, you acknowledge that you have read and understood these terms and conditions and agree to abide by them.</p>
                         </div>
-
+                        <div className="payment-options">
+                            <div className="card-number-input">
+                                <input
+                                    type="text"
+                                    placeholder="Card Number"
+                                    value={cardNumber}
+                                    onChange={handleCardNumberChange}
+                                />
+                            </div>
+                            <div className="cvv-expiry">
+                                <input
+                                    type="text"
+                                    placeholder="CVV"
+                                    value={cvv}
+                                    onChange={handleCVVChange}
+                                />
+                                <span className="expiry-separator">/</span>
+                                <input
+                                    type="text"
+                                    placeholder="Expiry Date"
+                                    value={expiryDate}
+                                    onChange={handleExpiryDateChange}
+                                />
+                            </div>
+                            <button className="process-payment-button" onClick={handlePaymentProcess}>
+                                Process Payment
+                            </button>
+                        </div>
+>>>>>>> 3d590f5c517be4667664b8e604caa3f21f9d0e7d
                     </MDBCardText>
+
                 </MDBCardBody>
             </MDBCard>
         </MDBContainer>
