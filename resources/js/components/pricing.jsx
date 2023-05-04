@@ -103,35 +103,6 @@ export default function Pricing() {
                             </ol>
                             <p>By using STONKS services, you acknowledge that you have read and understood these terms and conditions and agree to abide by them.</p>
                         </div>
-                        <div className="payment-options">
-                            <div className="card-number-input">
-                                <input
-                                    type="text"
-                                    placeholder="Card Number"
-                                    value={cardNumber}
-                                    onChange={handleCardNumberChange}
-                                />
-                            </div>
-                            <div className="cvv-expiry">
-                                <input
-                                    type="text"
-                                    placeholder="CVV"
-                                    value={cvv}
-                                    onChange={handleCVVChange}
-                                />
-                                <span className="expiry-separator">/</span>
-                                <input
-                                    type="text"
-                                    placeholder="Expiry Date"
-                                    value={expiryDate}
-                                    onChange={handleExpiryDateChange}
-                                />
-                            </div>
-                            <button className="process-payment-button" onClick={handlePaymentProcess}>
-                                Process Payment
-                            </button>
-                        </div>
->>>>>>> 3d590f5c517be4667664b8e604caa3f21f9d0e7d
                     </MDBCardText>
 
                 </MDBCardBody>
